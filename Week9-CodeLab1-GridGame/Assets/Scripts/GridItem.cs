@@ -11,8 +11,8 @@ public class GridItem : MonoBehaviour
 
     void Start()
     {
-<<<<<<< HEAD
-        // materialIndex = Random.Range(0, materials.Length);
+
+        materialIndex = Random.Range(0, materials.Length);
         GetComponent<MeshRenderer>().material = 
             materials[materialIndex];
     }
@@ -21,25 +21,25 @@ public class GridItem : MonoBehaviour
         if(Input.GetMouseButtonDown(1)){
             changeColor();
         }
-=======
-        GetComponent<MeshRenderer>().material =  //accessing the mesh renderer of the GameObject this script is on
-            materials[Random.Range(0, materials.Length)]; //apply a random material from within the materials array
->>>>>>> 6b2bdf7d4788cd9f9362fa1851cf24762488b732
+
+       // GetComponent<MeshRenderer>().material =  //accessing the mesh renderer of the GameObject this script is on
+           // materials[Random.Range(0, materials.Length)]; //apply a random material from within the materials array
+
     }
 
     // creating a function that sets the position of a cube in the grid, and requires an x and y value to be passed through it
     public void SetPos(int x, int y)
     {
-<<<<<<< HEAD
+
         gridX = x;
         gridY = y;
         name = "X: " + x + " Y: " + y;
-=======
+
         gridX = x; //setting value of gridX to x
         gridY = y; //setting value of gridY to y
 
         name = "X: " + x + " Y: " + y; //naming the grid so that it says "X: (x-value) Y: (y-value)"
->>>>>>> 6b2bdf7d4788cd9f9362fa1851cf24762488b732
+
     }
 
     //function that happens when the mouse is clicked
@@ -51,12 +51,12 @@ public class GridItem : MonoBehaviour
         } else { //if something is selected
             GridManager.instance.Swap(this); //swapping the selected instance with this particular instance
         }
-<<<<<<< HEAD
+
         print(name);
-=======
+
 
         print(name); //prints the name of the position on the grid 
->>>>>>> 6b2bdf7d4788cd9f9362fa1851cf24762488b732
+
     }
 
     void changeColor(){
