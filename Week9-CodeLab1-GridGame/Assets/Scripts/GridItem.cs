@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class GridItem : MonoBehaviour
 {
+    //declaring a materials array and integers for the size of the grid
     public Material[] materials;
     public int gridX, gridY;
     public int materialIndex = 0;
 
     void Start()
     {
+<<<<<<< HEAD
         // materialIndex = Random.Range(0, materials.Length);
         GetComponent<MeshRenderer>().material = 
             materials[materialIndex];
@@ -19,25 +21,42 @@ public class GridItem : MonoBehaviour
         if(Input.GetMouseButtonDown(1)){
             changeColor();
         }
+=======
+        GetComponent<MeshRenderer>().material =  //accessing the mesh renderer of the GameObject this script is on
+            materials[Random.Range(0, materials.Length)]; //apply a random material from within the materials array
+>>>>>>> 6b2bdf7d4788cd9f9362fa1851cf24762488b732
     }
 
-    // Start is called before the first frame update
+    // creating a function that sets the position of a cube in the grid, and requires an x and y value to be passed through it
     public void SetPos(int x, int y)
     {
+<<<<<<< HEAD
         gridX = x;
         gridY = y;
         name = "X: " + x + " Y: " + y;
+=======
+        gridX = x; //setting value of gridX to x
+        gridY = y; //setting value of gridY to y
+
+        name = "X: " + x + " Y: " + y; //naming the grid so that it says "X: (x-value) Y: (y-value)"
+>>>>>>> 6b2bdf7d4788cd9f9362fa1851cf24762488b732
     }
 
+    //function that happens when the mouse is clicked
     void OnMouseDown()
     {
-        if(GridManager.instance.selected == null){
-            GridManager.instance.selected = this;
-            transform.localScale = new Vector3(1, 1, 1);
-        } else {
-            GridManager.instance.Swap(this);
+        if(GridManager.instance.selected == null){ //if nothing is selected
+            GridManager.instance.selected = this; //select this particular instance
+            transform.localScale = new Vector3(1, 1, 1); // changing the scale of the selected instance
+        } else { //if something is selected
+            GridManager.instance.Swap(this); //swapping the selected instance with this particular instance
         }
+<<<<<<< HEAD
         print(name);
+=======
+
+        print(name); //prints the name of the position on the grid 
+>>>>>>> 6b2bdf7d4788cd9f9362fa1851cf24762488b732
     }
 
     void changeColor(){
