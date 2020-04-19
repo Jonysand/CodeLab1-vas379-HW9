@@ -48,6 +48,7 @@ public class GridItem : MonoBehaviour
         if(GridManager.instance.selected == null){ //if nothing is selected
             GridManager.instance.selected = this; //select this particular instance
             transform.localScale = new Vector3(1, 1, 1); // changing the scale of the selected instance
+            Debug.Log(materialIndex);
         } else { //if something is selected
             GridManager.instance.Swap(this); //swapping the selected instance with this particular instance
         }
