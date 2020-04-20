@@ -73,8 +73,9 @@ public class GridManager : MonoBehaviour
                 int originalGridMaterialIndex = grid[x, y].GetComponent<GridItem>().materialIndex;
                 if (solution[x, y].GetComponent<GridItem>().materialIndex == originalGridMaterialIndex)
                     {
-                        grid[x, y].GetComponent<GridItem>().materialIndex = Random.Range(0, 4);
-                    }
+
+                    grid[x, y].GetComponent<GridItem>().newColor();
+                }
 
 
                     grid[x, y].GetComponent<GridItem>().SetPos(x, y);  //get the GridItem component of a given cube and execute the SetPos function on it, passing its x,y coordinates through

@@ -60,7 +60,7 @@ public class GridItem : MonoBehaviour
 
     }
 
-    void changeColor(){
+     void changeColor(){
         // use ray casting to detect which block is chosen
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
@@ -82,5 +82,16 @@ public class GridItem : MonoBehaviour
         GetComponent<MeshRenderer>().material = 
             materials[this.materialIndex];
         objTr.localScale /= 1.2f;
+    }
+
+    public void newColor()
+    {
+        this.materialIndex++;
+        if (this.materialIndex >= materials.Length)
+        {
+            this.materialIndex = 0;
+        }
+        GetComponent<MeshRenderer>().material =
+            materials[this.materialIndex];
     }
 }
