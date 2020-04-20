@@ -12,14 +12,13 @@ public class GridManager : MonoBehaviour
     public GameObject cube;
 
     //creating 2d array
-    GameObject[,] grid;
+    public GameObject[,] grid;
 
     //creating a unique instance of this script
     public static GridManager instance;
 
     //creating a new object of type GridItem
     public GridItem selected;
-
 
     void Awake() //function called when the game starts
     {
@@ -34,6 +33,7 @@ public class GridManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         grid = new GameObject[width, height]; //creating a new grid array with a width of "width" and a height of "height"
 
         GameObject gridHolder = new GameObject("Grid Holder"); //create an empty GameObject to hold the 2d array

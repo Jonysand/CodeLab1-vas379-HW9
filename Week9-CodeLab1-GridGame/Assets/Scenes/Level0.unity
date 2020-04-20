@@ -184,6 +184,7 @@ MonoBehaviour:
   width: 4
   height: 4
   cube: {fileID: 5668347532804257379, guid: 28e23f54583394634b22101eccdd2b4d, type: 3}
+  grey: {fileID: 2100000, guid: 4a7c282bb72ae0747944aeb8adebff75, type: 2}
 --- !u!1 &387022524
 GameObject:
   m_ObjectHideFlags: 0

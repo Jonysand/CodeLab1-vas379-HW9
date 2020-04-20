@@ -8,10 +8,13 @@ public class SolutionScript : MonoBehaviour
     public int height;
     public GameObject cube;
     GameObject[,] solution;
+    GridManager grid;
+    public Material grey;
 
     // Start is called before the first frame update
     void Start()
     {
+        grid = GetComponent<GridManager>();
         solution = new GameObject[width, height];
         GameObject SolutionHolder = new GameObject("Solution Holder");
         for (int x = 0; x < width; x++)
@@ -26,5 +29,20 @@ public class SolutionScript : MonoBehaviour
                 solution[x, y].GetComponent<GridItem>().SetPos(x, y);
             }
         }
+    }
+
+    private void Update()
+    {
+        for (int x = 0; x < width; x++)
+        { //checking the width
+            for (int y = 0; y < height; y++) //checking the height
+            {
+                if (solution[x, y].GetComponent<MeshRenderer>().material == grid.gameObject.GetComponent<MeshRenderer>().material)
+                {
+                    solution[x, y].GetComponent<MeshRenderer>().material = grey;
+                }
+            }
+        }
+
     }
 }
