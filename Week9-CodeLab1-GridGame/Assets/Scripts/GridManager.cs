@@ -5,20 +5,27 @@ using UnityEngine;
 public class GridManager : MonoBehaviour
 {
     //declaring variables for height and width
-    public int width; 
-    public int height;
+    public int width1; 
+    public int height1;
+    //solution width and height
+    public int width2;
+    public int height2;
 
     //declaring GameObject
     public GameObject cube;
+   
 
     //creating 2d array
     public GameObject[,] grid;
+    public GameObject[,] solution;
 
     //creating a unique instance of this script
     public static GridManager instance;
 
     //creating a new object of type GridItem
     public GridItem selected;
+
+    public Material grey;
 
     void Awake() //function called when the game starts
     {
@@ -33,14 +40,27 @@ public class GridManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        solution = new GameObject[width2, height2]; //create solution array
+        GameObject SolutionHolder = new GameObject("Solution Holder");
+        for (int x = 0; x < width2; x++)
+        { //checking the width
+            for (int y = 0; y < height2; y++) //checking the height
+            {
+                //place a cube into every x,y coordinate
+                solution[x, y] = Instantiate<GameObject>(cube);
+                //solution[x, y].transform.position = new Vector3(x, y, 0); //No need to place this grid onto the scene
 
-        grid = new GameObject[width, height]; //creating a new grid array with a width of "width" and a height of "height"
+                solution[x, y].transform.parent = SolutionHolder.transform; //make each cube a child of the gridHolder object
+                solution[x, y].GetComponent<GridItem>().SetPos(x, y);
+            }
+        }
+            grid = new GameObject[width1, height1]; //creating a new grid array with a width of "width" and a height of "height"
 
         GameObject gridHolder = new GameObject("Grid Holder"); //create an empty GameObject to hold the 2d array
 
         //for loop to fill in the grid
-        for (int x = 0; x < width; x++){ //checking the width
-            for (int y = 0; y < height; y++) //checking the height
+        for (int x = 0; x < width1; x++){ //checking the width
+            for (int y = 0; y < height1; y++) //checking the height
             {
              
                 //place a cube into every x,y coordinate
@@ -49,14 +69,43 @@ public class GridManager : MonoBehaviour
                     new Vector3(x, y, 0); //set the position of a cube to the x,y coordinates of this particular position in the grid
 
                 grid[x, y].transform.parent = gridHolder.transform; //make each cube a child of the gridHolder object
-             
 
-                grid[x, y].GetComponent<GridItem>().SetPos(x, y);  //get the GridItem component of a given cube and execute the SetPos function on it, passing its x,y coordinates through
+                int originalGridMaterialIndex = grid[x, y].GetComponent<GridItem>().materialIndex;
+                if (solution[x, y].GetComponent<GridItem>().materialIndex == originalGridMaterialIndex)
+                    {
+                        grid[x, y].GetComponent<GridItem>().materialIndex = Random.Range(0, 4);
+                    }
+
+
+                    grid[x, y].GetComponent<GridItem>().SetPos(x, y);  //get the GridItem component of a given cube and execute the SetPos function on it, passing its x,y coordinates through
             }
         }
 
+     
+        
+
         Camera.main.transform.position = 
-            new Vector3(width / 2, height / 2, -10); //change the position of the camera to be able to see the grid
+            new Vector3(width1 / 2, height1 / 2, -10); //change the position of the camera to be able to see the grid
+    }
+
+    private void Update()
+    {
+        for (int x = 0; x < width2; x++)
+        { //checking the width
+            for (int y = 0; y < height2; y++) //checking the height
+            {
+                // getting the grid item's materialIndex
+                int originalGridMaterialIndex = grid[x, y].GetComponent<GridItem>().materialIndex;
+                if (solution[x, y].GetComponent<GridItem>().materialIndex == originalGridMaterialIndex)
+                {
+                    print("change mat");
+                    // change the material of that item
+                    //grid.grid[x,y].GetComponent<MeshRenderer>().material = grid.grid[x,y].GetComponent<GridItem>().materials[originalGridMaterialIndex];
+                    grid[x, y].GetComponent<MeshRenderer>().material = grey;
+                }
+            }
+        }
+
     }
 
     //creating a Swap function which passes through a new GridItem

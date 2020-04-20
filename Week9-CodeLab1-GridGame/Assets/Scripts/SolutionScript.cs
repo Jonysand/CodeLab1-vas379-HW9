@@ -7,7 +7,7 @@ public class SolutionScript : MonoBehaviour
     public int width;
     public int height;
     public GameObject cube;
-    GameObject[,] solution;
+    public GameObject[,] solution;
     GridManager grid;
     public Material grey;
 
@@ -43,8 +43,8 @@ public class SolutionScript : MonoBehaviour
                 {
                     print("change mat");
                     // change the material of that item
-                    grid.grid[x,y].GetComponent<MeshRenderer>().material = grid.grid[x,y].GetComponent<GridItem>().materials[originalGridMaterialIndex];
-                    solution[x, y].GetComponent<MeshRenderer>().material = grey;
+                    //grid.grid[x,y].GetComponent<MeshRenderer>().material = grid.grid[x,y].GetComponent<GridItem>().materials[originalGridMaterialIndex];
+                    grid.grid[x, y].GetComponent<MeshRenderer>().material = grey;
                 }
             }
         }
