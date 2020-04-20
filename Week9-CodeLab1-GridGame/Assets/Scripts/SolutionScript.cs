@@ -37,9 +37,13 @@ public class SolutionScript : MonoBehaviour
         { //checking the width
             for (int y = 0; y < height; y++) //checking the height
             {
-                if (solution[x, y].GetComponent<MeshRenderer>().material == grid.grid[x,y].GetComponent<MeshRenderer>().material)
+                // getting the grid item's materialIndex
+                int originalGridMaterialIndex = grid.grid[x,y].GetComponent<GridItem>().materialIndex;
+                if (solution[x, y].GetComponent<GridItem>().materialIndex == originalGridMaterialIndex)
                 {
                     print("change mat");
+                    // change the material of that item
+                    grid.grid[x,y].GetComponent<MeshRenderer>().material = grid.grid[x,y].GetComponent<GridItem>().materials[originalGridMaterialIndex];
                     solution[x, y].GetComponent<MeshRenderer>().material = grey;
                 }
             }
