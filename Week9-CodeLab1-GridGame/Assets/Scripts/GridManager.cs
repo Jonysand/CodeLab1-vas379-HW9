@@ -42,12 +42,15 @@ public class GridManager : MonoBehaviour
         for (int x = 0; x < width; x++){ //checking the width
             for (int y = 0; y < height; y++) //checking the height
             {
+             
                 //place a cube into every x,y coordinate
                 grid[x, y] = Instantiate<GameObject>(cube); 
                 grid[x, y].transform.position = 
                     new Vector3(x, y, 0); //set the position of a cube to the x,y coordinates of this particular position in the grid
 
                 grid[x, y].transform.parent = gridHolder.transform; //make each cube a child of the gridHolder object
+             
+
                 grid[x, y].GetComponent<GridItem>().SetPos(x, y);  //get the GridItem component of a given cube and execute the SetPos function on it, passing its x,y coordinates through
             }
         }
